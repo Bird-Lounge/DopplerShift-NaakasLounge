@@ -3,7 +3,7 @@
 /datum/quirk/item_quirk/stuffable
 	name = "True Glutton"
 	desc = "Voracious alt ft. BWELLY ITEM.  Alt-click it in-hand to change the color to match your sprite, then equip or use for nommage as the description says."
-	icon = FA_ICON_DRUMSTICK_BITE
+	icon = FA_ICON_COOKIE_BITE
 	value = 0
 	mob_trait = TRAIT_VORACIOUS
 	gain_text = span_notice("You feel like you could eat a horse!")
@@ -330,8 +330,6 @@
 			if(istype(a_gas))
 				//user.visible_message("Debugging: [target]'s lungs have the following breath gas [a_gas]")
 				last_gasmix = "[last_gasmix][a_gas.id]=100;"
-			else
-				//user.visible_message("Debugging: [target]'s lungs breath list was malformed, got [something_in_list] when querying for gas datums")
 		last_gasmix = "[last_gasmix]TEMP=293.15"
 	else
 		last_gasmix = "o2=5;n2=10;TEMP=293.15"
