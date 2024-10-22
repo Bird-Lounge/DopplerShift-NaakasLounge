@@ -1,7 +1,7 @@
 import {
   Feature,
   FeatureColorInput,
-  FeatureNumberInput
+  FeatureNumberInput,
 } from '../base';
 
 export const bellyitem_color: Feature<string> = {
