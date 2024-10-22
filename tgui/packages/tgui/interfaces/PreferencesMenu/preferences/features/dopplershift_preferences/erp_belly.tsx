@@ -1,4 +1,4 @@
-import { Feature, FeatureColorInput, FeatureNumberInput } from '../../base';
+import { Feature, FeatureColorInput, FeatureNumberInput } from '../base';
 
 export const bellyitem_color: Feature<string> = {
   name: 'Belly Color',
