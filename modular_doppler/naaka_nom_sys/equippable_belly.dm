@@ -39,7 +39,7 @@
 /datum/preference/color/bellyitem_color
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "lounge_bellyitem_color"
+	savefile_key = "bellyitem_color"
 
 /datum/preference/color/bellyitem_color/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
@@ -47,7 +47,7 @@
 /datum/preference/numeric/bellyitem_sizemod
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "lounge_bellyitem_sizemod"
+	savefile_key = "bellyitem_sizemod"
 	step = 0.1
 	minimum = 0
 	maximum = 10
@@ -61,7 +61,7 @@
 /datum/preference/numeric/bellyitem_size_base
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "lounge_bellyitem_size_base"
+	savefile_key = "bellyitem_size_base"
 	step = 1
 	minimum = 0
 	maximum = 10000
@@ -75,7 +75,7 @@
 /datum/preference/numeric/bellyitem_size_endo
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "lounge_bellyitem_size_endo"
+	savefile_key = "bellyitem_size_endo"
 	step = 1
 	minimum = 0
 	maximum = 10000
@@ -89,7 +89,7 @@
 /datum/preference/numeric/bellyitem_size_stuffed
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "lounge_bellyitem_size_stuffed"
+	savefile_key = "bellyitem_size_stuffed"
 	step = 1
 	minimum = 0
 	maximum = 10000
@@ -116,7 +116,7 @@
 
 /obj/item/belly_function
 	name = "bwelly"
-	desc = "Gobble friends, stuff yourself, be big and round, get the devs cancelled on Twitter for the item supporting endosoma only. Equip with Ctrl-Shift-Click on your Nipples slot for display of stuffedness, or click a friend with this to nom them beforehand.  Drop on the floor, use in-hand, or unequip from the Interact menu to free a nommed friend."
+	desc = "Gobble friends, stuff yourself, be big and round, get the devs cancelled on Twitter for the item supporting endosoma only. Keep in a pocket slot, or click a friend with this to nom them beforehand.  Drop on the floor, or use in-hand to free a nommed friend."
 	icon_state = "bwelly"
 	base_icon_state = "belly"
 	icon = 'modular_doppler/naaka_nom_sys/items.dmi'
@@ -163,9 +163,17 @@
 	var/slosh_sounds = list("modular_doppler/naaka_nom_sys/sounds/SloshMinor/digest (20)", "modular_doppler/naaka_nom_sys/sounds/SloshMinor/slurslosh", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/blorbsquish", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/walkslosh3", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/walkslosh4", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/walkslosh7")
 
 	/// Live editable layers in case things go scrungy.
-	var/hori_layer = UNIFORM_LAYER
-	var/south_layer = UNIFORM_LAYER
+	var/hori_layer = UNIFORM_LAYER + 0.1
+	var/south_layer = UNIFORM_LAYER + 0.1
 	var/north_layer = BODY_BEHIND_LAYER
+
+/obj/item/belly_function/examine(mob/user)
+	. = ..()
+	. += "Current size: [current_size_unclamped]"
+	if(istype(nommed))
+		. += "Current nommed guest: [nommed]"
+	else
+		. += "No nommed guest."
 
 /obj/item/belly_function/click_alt(mob/living/user)
 	var/adjustment_mode = tgui_input_list(user, "Select ", "Belly Control", list("Change Color", "Set Size Modifier", "Set Baseline Cosmetic Size", "Set Baseline Endo Size", "Set Baseline Stuffed Size", "Set Eaten Guest Size"))
