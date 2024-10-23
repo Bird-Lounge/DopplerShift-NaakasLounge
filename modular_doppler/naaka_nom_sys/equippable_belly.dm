@@ -163,8 +163,8 @@
 	var/slosh_sounds = list("modular_doppler/naaka_nom_sys/sounds/SloshMinor/digest (20)", "modular_doppler/naaka_nom_sys/sounds/SloshMinor/slurslosh", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/blorbsquish", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/walkslosh3", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/walkslosh4", "modular_doppler/naaka_nom_sys/sounds/SloshMajor/walkslosh7")
 
 	/// Live editable layers in case things go scrungy.
-	var/hori_layer = UNIFORM_LAYER + 0.1
-	var/south_layer = UNIFORM_LAYER + 0.1
+	var/hori_layer = UNIFORM_LAYER
+	var/south_layer = UNIFORM_LAYER
 	var/north_layer = BODY_BEHIND_LAYER
 
 /obj/item/belly_function/examine(mob/user)
