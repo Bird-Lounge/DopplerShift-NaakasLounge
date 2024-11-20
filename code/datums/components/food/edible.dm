@@ -342,9 +342,9 @@ Behavior that's still missing from this component that original food items had t
 /// Normal time to forcefeed someone something
 #define EAT_TIME_FORCE_FEED (3 SECONDS)
 /// Multiplier for eat time if the eater has TRAIT_VORACIOUS
-#define EAT_TIME_VORACIOUS_MULT 0.65 // voracious folk eat 35% faster
+#define EAT_TIME_VORACIOUS_MULT 0.75 // voracious folk eat 35% faster
 /// Multiplier for how much longer it takes a voracious folk to eat while full
-#define EAT_TIME_VORACIOUS_FULL_MULT 4 // Takes at least 4 times as long to eat while full, so dorks cant just clear out the kitchen before they get robusted
+#define EAT_TIME_VORACIOUS_FULL_MULT 0.75 /// DOPPLER SHIFT EDIT - 0.75, down from 4  // Takes at least 4 times as long to eat while full, so dorks cant just clear out the kitchen before they get robusted
 
 ///All the checks for the act of eating itself and
 /datum/component/edible/proc/TryToEat(mob/living/eater, mob/living/feeder)
@@ -454,7 +454,7 @@ Behavior that's still missing from this component that original food items had t
 	TakeBite(eater, feeder)
 
 	//If we're not force-feeding and there's an eat delay, try take another bite
-	if(eater == feeder && eat_time > 0)
+	if(eat_time > 0) /// DOPPLER SHIFT REMOVAL: eater == feeder
 		INVOKE_ASYNC(src, PROC_REF(TryToEat), eater, feeder)
 
 #undef EAT_TIME_FORCE_FEED
